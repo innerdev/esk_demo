@@ -29,13 +29,15 @@ $ docker-compose run --rm npm install
 $ docker-compose run --rm npm run prod
 ```
 
-Why NPM? We need it to build SCSS into CSS, add bootstrap from vendor directory and bundle it to app.css. Also we need bundle JS into app.js.
+Why NPM? We need it to add Bootstrap from node_modules and build SCSS into CSS. Also we need bundle JS into app.js.
 
 Usage
 ---
 Open the following URLs in your web-browser:
 ```
-   http://localhost:8080/api/v1/tables
+   http://localhost:8080/api/v1/news
+    http://localhost:8080/api/v1/news?date=10.10.2020
+http://localhost:8080/api/v1/news?date=10.10.2020
    http://localhost:8080/api/v1/galleries
 ```
 What about dashboard? Open root page:
@@ -79,7 +81,7 @@ Task description
 <details>
     <summary>Click me to expand this section</summary>
 
-Тестовое задание Блог
+Тестовое задание: Блог
  
 Две категории: Новости, Галлерея
 

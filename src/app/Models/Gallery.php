@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NewsItem extends Model
+class Gallery extends Model
 {
-    //
+    protected $table = "gallery";
 }
