@@ -17,6 +17,7 @@ class NewsObserver
         $this->request = $request;
     }
 
+    // TODO what if we save News model not from dashboard?..
     public function saving(News $news)
     {
         if (empty($news->slug)) {
@@ -26,6 +27,10 @@ class NewsObserver
         // TODO remove magic number '-1', it is value from html form by default
         if (is_null($this->request->image) && $this->request->get('gallery_guid') != -1) {
             $news->gallery_guid = $this->request->get('gallery_guid');
+        }
+
+        if ($this->request->get('gallery_guid') == -1) {
+            $news->gallery_guid = null;
         }
 
         if (!is_null($this->request->image)) {

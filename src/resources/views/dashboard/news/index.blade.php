@@ -20,7 +20,10 @@
                         <td>@if (!is_null($newsItem->gallery)) {{$newsItem->gallery->filename}} @endif</td>
                         <td>{{$newsItem->getLimitedContent(50)}}</td>
                         <td>{{$newsItem->created_at}}</td>
-                        <td><a href="/dashboard/news/remove/{{$newsItem->id}}">Remove</a></td>
+                        <td>
+                            <a href="/dashboard/news/edit/{{$newsItem->id}}">Edit</a> |
+                            <a href="/dashboard/news/remove/{{$newsItem->id}}">Remove</a>
+                        </td>
                     </tr>
                 @endforeach
             </table>

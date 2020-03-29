@@ -23,16 +23,44 @@ class NewsController extends BaseController
         return view('dashboard.news.index', ['news' => $news]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('dashboard.news.create', ['galleries' => Gallery::all()]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // See App\Observers\NewsObserver.php
         News::create($request->validate([
             'header' => 'required|max:255',
             'content' => 'required'
         ]));
+        return redirect('/dashboard/news'); // TODO Those kind of URIs can be placed in route
+    }
+
+    public function edit($id)
+    {
+        return view('dashboard.news.edit', [
+            'newsItem' => News::where('id', $id)->first(),
+            'galleries' => Gallery::all()
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $newsItem = News::where('id', $request->get("id"))->first();
+        // TODO create own Request and put validator there
+        $data = $request->validate([
+            'header' => 'required|max:255',
+            'content' => 'required'
+        ]);
+        $newsItem->update($data);
+        return redirect('/dashboard/news');
+    }
+
+    public function remove($id)
+    {
+        News::destroy($id);
         return redirect('/dashboard/news');
     }
 }

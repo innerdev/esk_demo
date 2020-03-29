@@ -12,9 +12,9 @@ Route::middleware('auth')->namespace('Dashboard')->prefix('/dashboard')->group(f
 
     Route::get('/news/create', 'NewsController@create');
     Route::post('/news/store', 'NewsController@store');
-
-    // Route::resource('/news', 'NewsController');
-    // Route::resource('/gallery', 'GalleryController');
+    Route::get('/news/edit/{id}', 'NewsController@edit')->where('id', '[0-9]+');
+    Route::post('/news/update', 'NewsController@update');
+    Route::get('/news/remove/{id}', 'NewsController@remove')->where('id', '[0-9]+');
 });
 
 

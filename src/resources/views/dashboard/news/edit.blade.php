@@ -4,11 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            @if (is_null($newsItem))
-                <h2>Creating news</h2>
-            @else
-                <h2>Editing news "{{ $newsItem->header }}"</h2>
-            @endif
+            <h2>Editing news "{{ $newsItem->header }}"</h2>
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -20,24 +16,24 @@
                 </div>
             @endif
 
-            <form action="/dashboard/news/store" method="POST">
+            <form action="/dashboard/news/update" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 @if(!is_null($newsItem))<input type="hidden" name="id" value="{{$newsItem->id}}">@endif
 
                 <div class="form-group">
                     <label>Header:</label>
-                    <input type="text" class="form-control" name="header" value="{{old('header')}}@if(!is_null($newsItem) && empty(old('header'))) {{$newsItem->header}} @endif">
+                    <input type="text" class="form-control" name="header" value="{{old('header')}}@if(!is_null($newsItem) && empty(old('header'))){{$newsItem->header}}@endif">
                 </div>
 
                 <div class="form-group">
                     <label>Content:</label>
-                    <textarea name="content" class="form-control" cols="30" rows="10">@if(!is_null($newsItem)) {{$newsItem->content}} @endif</textarea>
+                    <textarea name="content" class="form-control" cols="30" rows="10">@if(!is_null($newsItem)){{$newsItem->content}}@endif</textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Slug:</label>
-                    <input type="text" class="form-control" name="content" value="@if(!is_null($newsItem)) {{$newsItem->header}} @endif">
+                    <input type="text" class="form-control" name="content" value="@if(!is_null($newsItem)){{$newsItem->header}}@endif">
                     <small>Leave this field empty to auto generate slug.</small>
                 </div>
 
@@ -51,14 +47,14 @@
                     <select name="gallery_guid" class="form-control">
                         <option value="-1">- none -</option>
                         @foreach ($galleries as $gallery)
-                            <option value="{{ $gallery->guid }}">{{ $gallery->description }}</option>
+                            <option value="{{ $gallery->guid }}" @if($newsItem->gallery_guid == $gallery->guid) selected @endif>{{ $gallery->description }}</option>
                         @endforeach
                     </select>
                     <small>If you upload image AND select gallery, new gallery will be created and uploaded image will be linked to news item.</small>
                 </div>
                 @endif
 
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
 
         </div>
