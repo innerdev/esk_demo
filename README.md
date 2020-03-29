@@ -1,27 +1,58 @@
 Installation
 ------------
-That should be enough:
-```shell script
+
+*Docker, Docker Compose and GIT are required to run this application.*
+
+First step is to clone this repository:
+
+```
+mkdir ~/esk_demo
+cd ~/esk_demo
+git clone https://github.com/innerdev/esk_demo.git
+```
+
+Now we need to install all required software (PHP, PostgreSQL, nginx and so on) with Docker. Execute the following from project root directory:
+```
 $ docker-compose build
 $ docker-compose up
-$ docker-compose run artisan migrate
 ```
+
+If something goes wrong, you can clean up all images, containers and volumes by executing ```docker system prune -a``` command if needed and try again.  
+**Warning! It removes EVERYTHING (stopped containers also)!**
+
+When containers are installed and run, execute following the commands to set up the application:
+```
+$ docker-compose run --rm composer update
+$ docker-compose run --rm artisan migrate
+$ docker-compose run --rm artisan db:seed
+$ docker-compose run --rm npm install
+$ docker-compose run --rm npm run prod
+```
+
+Why NPM? We need it to build SCSS into CSS, add bootstrap from vendor directory and bundle it to app.css. Also we need bundle JS into app.js.
 
 Usage
 ---
 Open the following URLs in your web-browser:
 ```
    http://localhost:8080/api/v1/tables
-   http://localhost:8080//api/v1/galleries
+   http://localhost:8080/api/v1/galleries
 ```
-Dashboard:
+What about dashboard? Open root page:
 ```
-   http://localhost:8080/admin
+   http://localhost:8080/
 ```
-Login: admin  
-Password: password
+And sign in with following credentials:
+```
+admin@admin.admin  
+AdminPassword
+```
+Press "Login".
 
-Pay attention that root page (http://localhost:8080/) is empty.
+Notice
+---------
+
+I made auth because it's just simple with Laravel. 
 
 Utils
 -----
@@ -29,6 +60,13 @@ Also you can use ```adminer``` to access the database:
 ```shell script
 http://localhost:8081/
 ```
+Host: postgres  
+Database name: dbname  
+Database user: dbuser  
+Database password: dbpassword  
+Port (if needed): 5432  
+
+
 ______
 
 Misc
