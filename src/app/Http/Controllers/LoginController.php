@@ -8,7 +8,7 @@ class LoginController extends BaseController
 {
     use MyAuthenticatesUsers;
 
-    protected $redirectTo = "/";
+    protected $redirectTo = "/dashboard";
 
     public function __construct()
     {

@@ -13,16 +13,10 @@ class News extends Migration
             $table->string("header");
             $table->longText("content");
             $table->string('slug');
-            $table->uuid("preview_image_guid")->nullable();
-            $table->uuid("main_image_guid")->nullable();
+            $table->uuid("gallery_guid")->nullable();
             $table->timestamps();
 
-            $table->foreign('preview_image_guid')
-                ->references('guid')
-                ->on('gallery')
-                ->onDelete('set null');
-
-            $table->foreign('main_image_guid')
+            $table->foreign('gallery_guid')
                 ->references('guid')
                 ->on('gallery')
                 ->onDelete('set null');

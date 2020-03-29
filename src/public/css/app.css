@@ -10890,3 +10890,11 @@ body {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
+.dashboard__index-table {
+  margin-top: 25px;
+}
+
+.alert-danger ul {
+  margin: 0;
+}
+

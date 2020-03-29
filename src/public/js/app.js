@@ -17899,8 +17899,6 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
 
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-$(".test").html("Hello!");
-
 /***/ }),
 
 /***/ "./resources/sass/app.scss":

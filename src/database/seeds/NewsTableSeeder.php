@@ -13,8 +13,7 @@ class NewsTableSeeder extends Seeder
             'header' => "Sample news title",
             'content' => "Sample news content",
             'slug' => "sample-news",
-            'preview_image_guid' => Gallery::first()->guid,
-            'main_image_guid' => Gallery::first()->guid,
+            'gallery_guid' => Gallery::first()->guid,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

@@ -24,13 +24,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">News</a>
+                            <a class="nav-link" href="/dashboard/news">News</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Gallery</a>
+                            <a class="nav-link" href="/dashboard/gallery">Gallery</a>
                         </li>
+                        @endif
                     </ul>
 
                     <ul class="navbar-nav ml-auto">

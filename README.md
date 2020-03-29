@@ -25,6 +25,7 @@ When containers are installed and run, execute following the commands to set up 
 $ docker-compose run --rm composer update
 $ docker-compose run --rm artisan migrate
 $ docker-compose run --rm artisan db:seed
+$ docker-compose run --rm artisan storage:link (TODO: проверить под виндой)
 $ docker-compose run --rm npm install
 $ docker-compose run --rm npm run prod
 ```
